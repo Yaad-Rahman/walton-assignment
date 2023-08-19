@@ -7,7 +7,8 @@ import { Typography } from "ui";
 
 export const UserDetails = () => {
   const user = Cookies.get("user");
-  const parsedUser: UserType = JSON.parse(user ?? "");
+  const parsedUser: UserType =
+    user && user.length > 0 ? JSON.parse(user) : null;
 
   const handleLogout = () => {
     Cookies.remove("user");
@@ -18,7 +19,7 @@ export const UserDetails = () => {
     <div className="w-full px-20 py-10 flex justify-end">
       <div className="flex items-center gap-3">
         <img
-          src={parsedUser.image}
+          src={parsedUser?.image}
           alt="user"
           className="w-12 h-12 object-cover rounded-full"
         />
